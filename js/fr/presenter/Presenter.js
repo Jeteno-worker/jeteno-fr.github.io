@@ -64,10 +64,10 @@ export class Presenter {
                 console.log("normalizedY: ", normalizedY)
 
                 const maskZone = {
-                    xMin: 0.34,
+                    xMin: 0.20,
                     xMax: 0.37,
                     yMin: 0.65,
-                    yMax: 0.68
+                    yMax: 0.86
                 };
 
                 const distanceZone = {
