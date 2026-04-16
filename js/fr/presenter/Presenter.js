@@ -66,14 +66,14 @@ export class Presenter {
                 console.log("distance: ", distance)
 
                 const maskZone = {
-                    xMin: 0.30,
+                    xMin: 0.20,
                     xMax: 0.40,
                     yMin: 0.45,
                     yMax: 0.60
                 };
 
                 const distanceZone = {
-                    min: 0.35,
+                    min: 0.30,
                     max: 0.55
                 }
 
