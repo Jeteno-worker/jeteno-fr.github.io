@@ -1,0 +1,97 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.fr {
+    background-image: url('../assets/images/background_gold.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.fr__title {
+    font-size: 4rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: bisque;
+}
+
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: calc(100% - 8vw);
+    max-width: 901px;
+    max-height: 507px;
+    overflow: hidden;
+}
+
+.camera-container__mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.camera-container__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    transform: scaleX(-1);
+}
+
+.frame-background-mask {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.frame-mask {
+    color: brown;
+    height: 71.5%;
+    top: 11.5%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+}
+
+.info__block {
+    top: 5.5%;
+    transform: translate(-50%);
+    width: 51.25%;
+    align-items: start;
+    background-color: #fff;
+    border-radius: 0.3em;
+    box-shadow: 0 8px 15px #333b401a;
+    box-sizing: border-box;
+    color: #333b40;
+    display: flex;
+    font-family: sans-serif;
+    font-size: 35px;
+    font-weight: 900;
+    justify-content: center;
+    left: 50%;
+    padding: 0.4em 0;
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+}
