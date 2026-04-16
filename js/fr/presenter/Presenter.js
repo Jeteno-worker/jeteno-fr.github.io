@@ -17,6 +17,7 @@ export class Presenter {
         videoElement.addEventListener('loadeddata', () => {
             this.view.createMaskVideo()
             this.view.createInfoBlock()
+            this.view.updateInfoBlockMessage('Пожалуйста, подождите, идет настройка модели');
 
             this.facePositionCheck()
         });
@@ -24,6 +25,7 @@ export class Presenter {
         this.model.setVideo(videoElement)
 
         await this.model.init()//передать сюда videoElement
+        this.view.updateInfoBlockMessage('Модель успешно настроена');
     }
 
     smileCheck() {
