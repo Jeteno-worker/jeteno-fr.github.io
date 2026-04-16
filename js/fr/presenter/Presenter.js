@@ -57,15 +57,17 @@ export class Presenter {
             if (faceMask) {
                 const {faceCenterX, faceCenterY, distance} = this.model.facePosition()
                 const rect = faceMask.getBoundingClientRect();
+                console.log("rect: ", rect)
 
                 const normalizedX = faceCenterX / rect.width;
                 const normalizedY = faceCenterY / rect.height;
                 console.log("normalizedX: ", normalizedX)
                 console.log("normalizedY: ", normalizedY)
+                console.log("distance: ", distance)
 
                 const maskZone = {
                     xMin: 0.20,
-                    xMax: 0.37,
+                    xMax: 0.40,
                     yMin: 0.65,
                     yMax: 0.90
                 };
