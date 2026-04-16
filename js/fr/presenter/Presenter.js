@@ -67,7 +67,7 @@ export class Presenter {
                     xMin: 0.20,
                     xMax: 0.37,
                     yMin: 0.65,
-                    yMax: 0.86
+                    yMax: 0.90
                 };
 
                 const distanceZone = {
