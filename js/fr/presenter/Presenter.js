@@ -43,7 +43,7 @@ export class Presenter {
                 }
             }
 
-            this.checkTimeout = setTimeout(check, 500)
+            this.checkTimeout = setTimeout(check, 100)
         }
 
         check()
@@ -100,7 +100,7 @@ export class Presenter {
 
                 this.view.updateInfoBlockMessage(positionMessage)
             }
-        }, 500)
+        }, 100)
     }
 
     stopFacePositionChecking() {

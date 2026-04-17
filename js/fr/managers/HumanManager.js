@@ -9,7 +9,7 @@ export class HumanManager {
             debug: true,
             backend: 'webgl',
             //перенести модель локально
-            modelBasePath: 'https://vladmandic.github.io/human-models/models/',
+            modelBasePath: './public/models',
             face: {
                 enabled: true, //Сетка лица
                 detector: { rotation: false },
