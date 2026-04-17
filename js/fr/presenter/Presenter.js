@@ -3,8 +3,9 @@ export class Presenter {
         this.view = view
         this.model = model
         this.isSmileDetected = false;
-        this.smileCheckInterval = null;
         this.facePositionInterval = null;
+        this.isBlinkDetected = false;
+        this.checkTimeout = null;
     }
 
     async initStream() {
@@ -18,37 +19,40 @@ export class Presenter {
             this.view.createMaskVideo()
             this.view.createInfoBlock()
             this.view.updateInfoBlockMessage('Пожалуйста, подождите, идет настройка модели');
-
-            this.facePositionCheck()
         });
 
-        this.model.setVideo(videoElement)
-
-        await this.model.init()//передать сюда videoElement
+        await this.model.init(videoElement)
         this.view.updateInfoBlockMessage('Модель успешно настроена');
+
+        this.facePositionCheck()
     }
 
     smileCheck() {
         const infoTitle = document.querySelector('.info__title');
 
-        this.smileCheckInterval = setInterval(() => {
+        const check = () => {
             if (infoTitle) {
                 const isSmiling = this.model.smileCheck();
                 if (isSmiling && !this.isSmileDetected) {
                     this.isSmileDetected = true;
                     this.view.updateInfoBlockMessage('Спасибо, проверка прошла');
-                    this.stopSmileChecking();
+                    this.stopTimeoutChecking();
+                    this.blinkCheck()
                 } else if (!isSmiling && !this.isSmileDetected) {
                     this.view.updateInfoBlockMessage('Пожалуйста, улыбнитесь');
                 }
             }
-        }, 1000);
+
+            this.checkTimeout = setTimeout(check, 500)
+        }
+
+        check()
     }
 
-    stopSmileChecking() {
-        if (this.smileCheckInterval) {
-            clearInterval(this.smileCheckInterval);
-            this.smileCheckInterval = null;
+    stopTimeoutChecking() {
+        if (this.checkTimeout) {
+            clearTimeout(this.checkTimeout);
+            this.checkTimeout = null;
         }
     }
 
@@ -59,13 +63,9 @@ export class Presenter {
             if (faceMask) {
                 const {faceCenterX, faceCenterY, distance} = this.model.facePosition()
                 const rect = faceMask.getBoundingClientRect();
-                console.log("rect: ", rect)
 
                 const normalizedX = faceCenterX / rect.width;
                 const normalizedY = faceCenterY / rect.height;
-                console.log("normalizedX: ", normalizedX)
-                console.log("normalizedY: ", normalizedY)
-                console.log("distance: ", distance)
 
                 const maskZone = {
                     xMin: 0.20,
@@ -82,9 +82,6 @@ export class Presenter {
                 const isWithinX = normalizedX >= maskZone.xMin && normalizedX <= maskZone.xMax;
                 const isWithinY = normalizedY >= maskZone.yMin && normalizedY <= maskZone.yMax;
                 const isDistanceZone = distance >= distanceZone.min && distance <= distanceZone.max;
-                console.log("distanceZone: ", distanceZone);
-                console.log("isWithinX: ", isWithinX);
-                console.log("isWithinY: ", isWithinY);
 
                 let positionMessage = '';
                 if (!isWithinX && !isWithinY && !isDistanceZone) {
@@ -103,7 +100,7 @@ export class Presenter {
 
                 this.view.updateInfoBlockMessage(positionMessage)
             }
-        }, 1000)
+        }, 500)
     }
 
     stopFacePositionChecking() {
@@ -111,5 +108,27 @@ export class Presenter {
             clearInterval(this.facePositionInterval);
             this.facePositionInterval = null;
         }
+    }
+
+    blinkCheck() {
+        const infoTitle = document.querySelector('.info__title');
+
+        const check = () => {
+            if (infoTitle) {
+                const isBlinking = this.model.eyeCheck();
+                if (isBlinking && !this.isBlinkDetected) {
+                    this.isBlinkDetected = true;
+                    this.view.updateInfoBlockMessage('Спасибо, проверка прошла');
+                    this.stopTimeoutChecking();
+
+                } else if (!isBlinking && !this.isBlinkDetected) {
+                    this.view.updateInfoBlockMessage('Пожалуйста, моргните');
+                }
+            }
+
+            this.checkTimeout = setTimeout(check, 100)
+        }
+
+        check()
     }
 }
