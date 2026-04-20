@@ -42,9 +42,9 @@ export class Presenter {
                 const normalizedY = faceCenterY / rect.height;
 
                 const maskZone = {
-                    xMin: 0.30,
+                    xMin: 0.27,
                     xMax: 0.40,
-                    yMin: 0.55,
+                    yMin: 0.50,
                     yMax: 0.65
                 };
 
