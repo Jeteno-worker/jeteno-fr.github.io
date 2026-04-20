@@ -42,9 +42,9 @@ export class Presenter {
                 const normalizedY = faceCenterY / rect.height;
 
                 const maskZone = {
-                    xMin: 0.25,
+                    xMin: 0.30,
                     xMax: 0.40,
-                    yMin: 0.50,
+                    yMin: 0.55,
                     yMax: 0.65
                 };
 
@@ -95,7 +95,8 @@ export class Presenter {
             if (isSmiling && !this.isSmileDetected) {
                 this.isSmileDetected = true;
                 this.stopTimeoutChecking();
-                this.view.updateInfoBlockMessage('Спасибо, проверка прошла');
+                this.view.updateInfoBlockMessage('Пожалуйста, подождите ...');
+                this.blinkCheck()
             } else if (!isSmiling && !this.isSmileDetected) {
                 this.view.updateInfoBlockMessage('Пожалуйста, улыбнитесь');
             }
@@ -115,7 +116,7 @@ export class Presenter {
                 this.isBlinkDetected = true
                 this.stopTimeoutChecking();
             } else if (!isBlinking && !this.isBlinkDetected) {
-                this.view.updateInfoBlockMessage('Пожалуйста, моргните');
+                this.view.updateInfoBlockMessage('Пожалуйста, моргните несколько раз');
             }
 
             this.checkTimeout = setTimeout(check, this.checkInterval)
