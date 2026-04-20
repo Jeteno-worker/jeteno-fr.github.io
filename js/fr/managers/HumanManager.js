@@ -10,11 +10,11 @@ export class HumanManager {
             backend: 'webgl',
             modelBasePath: './public/models',
             face: {
-                enabled: true, //Сетка лица
+                enabled: true,
                 detector: { rotation: false },
-                mesh: { enabled: true }, // Детальная сетка для точек глаз
+                mesh: { enabled: true },
                 attention: { enabled: false },
-                iris: { enabled: false }, // Включение точек радужки
+                iris: { enabled: true },
                 description: { enabled: false },
                 emotion: { enabled: true },
                 antispoof: { enabled: false },
