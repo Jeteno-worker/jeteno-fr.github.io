@@ -14,11 +14,11 @@ export class HumanManager {
                 detector: { rotation: false },
                 mesh: { enabled: true }, // Детальная сетка для точек глаз
                 attention: { enabled: false },
-                iris: { enabled: true }, // Включение точек радужки
-                description: { enabled: true },
+                iris: { enabled: false }, // Включение точек радужки
+                description: { enabled: false },
                 emotion: { enabled: true },
-                antispoof: { enabled: true },
-                liveness: { enabled: true }
+                antispoof: { enabled: false },
+                liveness: { enabled: false }
             },
         })
 

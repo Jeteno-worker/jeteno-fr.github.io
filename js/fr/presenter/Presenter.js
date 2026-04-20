@@ -6,6 +6,7 @@ export class Presenter {
         this.isBlinkDetected = false;
         this.checkTimeout = null;
         this.currentStage = 'position';
+        this.checkInterval = 800
     }
 
     async initStream() {
@@ -41,9 +42,9 @@ export class Presenter {
                 const normalizedY = faceCenterY / rect.height;
 
                 const maskZone = {
-                    xMin: 0.20,
+                    xMin: 0.25,
                     xMax: 0.40,
-                    yMin: 0.45,
+                    yMin: 0.50,
                     yMax: 0.65
                 };
 
@@ -82,7 +83,7 @@ export class Presenter {
                     this.view.updateInfoBlockMessage('Верните лицо в рамку');
                 }
             }
-        }, 600)
+        }, this.checkInterval)
     }
 
     smileCheck() {
@@ -99,7 +100,7 @@ export class Presenter {
                 this.view.updateInfoBlockMessage('Пожалуйста, улыбнитесь');
             }
 
-            this.checkTimeout = setTimeout(check, 600)
+            this.checkTimeout = setTimeout(check, this.checkInterval)
         }
 
         check()
@@ -117,7 +118,7 @@ export class Presenter {
                 this.view.updateInfoBlockMessage('Пожалуйста, моргните');
             }
 
-            this.checkTimeout = setTimeout(check, 600)
+            this.checkTimeout = setTimeout(check, this.checkInterval)
         }
 
         check()
