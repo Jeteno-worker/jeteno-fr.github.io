@@ -60,7 +60,7 @@ export class HumanManager {
 
     checkSmile() {
         const happyEmotion = this.faceData.emotion.find(e => e.emotion === 'happy');
-        return happyEmotion && happyEmotion.score > 0.8
+        return happyEmotion && happyEmotion.score > 0.7
     }
 
     checkBlink() {
