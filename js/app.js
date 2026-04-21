@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function stopCurrentPresenter() {
+    function stopCurrentPresenter() {
         if (currentPresenter) {
             currentPresenter.stop();
         }
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function initWithEngine(engineType) {
-        await stopCurrentPresenter();
+        stopCurrentPresenter();
 
         const cameraContainer = document.getElementById('cameraContainer');
         cameraContainer.innerHTML = '';
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentModel = new FrModel(faceManager);
         currentPresenter = new Presenter(currentView, currentModel);
 
-        await currentPresenter.initStream();
+        currentPresenter.initStream();
     }
 
     applyBtn.addEventListener('click', async () => {
