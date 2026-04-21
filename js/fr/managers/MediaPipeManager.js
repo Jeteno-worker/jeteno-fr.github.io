@@ -45,6 +45,8 @@ export class MediaPipeManager {
     }
 
     getFaceData() {
+        if (!this.isRunning) return;
+
         const landmarks = this.faceData.faceLandmarks[0];
         const blendshapes = this.faceData.faceBlendshapes?.[0];
 
